@@ -53,8 +53,10 @@ jobs:
           ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts
           echo ~/.ssh/known_hosts
           scp index.html azureuser@$DEPLOY_SERVER_IP:index.html
+          pwd
           cat index.html
           sudo mv index.html /var/www/html/
+          cat /var/www/html/index.html
         env:
           SSH_PRIVATEKEY : ${{secrets.SSH_PRIVATEKEY}}
           DEPLOY_SERVER_IP: ${{secrets.DEPLOY_SERVER_IP}}
