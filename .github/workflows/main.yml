@@ -36,15 +36,18 @@ jobs:
           echo test, and deploy your project.
           pwd
           ls -la
-      
-      - name: Install pre-req
+
+  deploy:  
+    runs-on: ubuntu-latest
+    steps:  
+      - name: Perform deploy
         run: |
-          pwd
-          echo "$SECRET_KEY_PEM" > file.pem
-          echo $SECRET_KEY_PEM | tr -d '\r'
-          ls -la
-          cat file.pem
-          echo $SECRET_KEY_PEM | sed 's/./& /g'
-          scp -i file.pem index.html azureuser@20.121.128.204:index.html
+          mkdir -p ~/.ssh
+          eval $(ssh-agent -s)
+          echo "$SSH_PRIVATEKEY" | tr -d '\r' | ssh-add - > /dev/null
+          touch ~/.ssh/configure
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+          ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts
+          echo ~/.ssh/known_hosts
         env:
-          SECRET_KEY_PEM : ${{secrets.SECRET_KEY_PEM}}
+          SSH_PRIVATEKEY : ${{secrets.SSH_PRIVATEKEY}}
