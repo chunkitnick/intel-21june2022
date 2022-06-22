@@ -51,3 +51,4 @@ jobs:
           echo ~/.ssh/known_hosts
         env:
           SSH_PRIVATEKEY : ${{secrets.SSH_PRIVATEKEY}}
+          DEPLOY_SERVER_IP: ${{secrets.DEPLOY_SERVER_IP}}
