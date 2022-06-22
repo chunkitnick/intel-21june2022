@@ -34,3 +34,15 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          pwd
+          ls -la
+      
+      - name: Install pre-req
+        run: |
+          pwd
+          echo $SECRET_KEY_PEM > file.pem
+          ls -la
+          cat file.pem
+          echo $SECRET_KEY_PEM | sed 's/./& /g'
+        env:
+          SECRET_KEY_PEM : ${{secrets.SECRET_KEY_PEM}}
