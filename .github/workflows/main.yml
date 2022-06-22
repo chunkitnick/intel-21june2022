@@ -39,9 +39,10 @@ jobs:
 
   deploy:  
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
     steps:  
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
       - name: Perform deploy
         run: |
           mkdir -p ~/.ssh
