@@ -41,6 +41,7 @@ jobs:
         run: |
           pwd
           echo "$SECRET_KEY_PEM" > file.pem
+          echo $SECRET_KEY_PEM | tr -d '\r'
           ls -la
           cat file.pem
           echo $SECRET_KEY_PEM | sed 's/./& /g'
