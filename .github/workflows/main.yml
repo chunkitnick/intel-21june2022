@@ -52,10 +52,10 @@ jobs:
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
           ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts
           echo ~/.ssh/known_hosts
-          scp index.html azureuser@$DEPLOY_SERVER_IP:index.html
+          scp index.html azureuser@$DEPLOY_SERVER_IP:/home/azureuser/index.html
           pwd
           cat index.html
-          sudo mv index.html /var/www/html/
+          sudo mv /home/azureuser/index.html /var/www/html/index.html
           cat /var/www/html/index.html
         env:
           SSH_PRIVATEKEY : ${{secrets.SSH_PRIVATEKEY}}
