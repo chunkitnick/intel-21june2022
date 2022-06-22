@@ -42,7 +42,7 @@ jobs:
     steps:  
       - name: Checkout repo
         uses: actions/checkout@v3
-        
+
       - name: Perform deploy
         run: |
           mkdir -p ~/.ssh
@@ -53,6 +53,7 @@ jobs:
           ssh-keyscan -H $DEPLOY_SERVER_IP >> ~/.ssh/known_hosts
           echo ~/.ssh/known_hosts
           scp index.html azureuser@$DEPLOY_SERVER_IP:index.html
+          mv index.html /var/www/html/
         env:
           SSH_PRIVATEKEY : ${{secrets.SSH_PRIVATEKEY}}
           DEPLOY_SERVER_IP: ${{secrets.DEPLOY_SERVER_IP}}
