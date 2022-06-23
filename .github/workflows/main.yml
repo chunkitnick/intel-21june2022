@@ -57,6 +57,9 @@ jobs:
     #  name: development
     #  url: http://20.121.128.204/contact.html
     steps:
+      - name: Clone the Code
+        uses: actions/checkout@v3
+
       - name: Copy and deploy
         uses: mdallasanta/ssh-scp-deploy@v1.2.0
         with:
