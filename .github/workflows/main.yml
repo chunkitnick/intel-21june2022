@@ -79,7 +79,7 @@ jobs:
       
       - name: Verify the downloadad packages
         run: | 
-          ls -la
+          ls
           pwd
 
       - name: Check version.html from the artifacts
