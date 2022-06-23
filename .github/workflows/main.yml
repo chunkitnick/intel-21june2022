@@ -52,10 +52,10 @@ jobs:
 
   deployment-converged:
     runs-on: ubuntu-latest
-    #needs: test
-    #environment:
-    #  name: development
-    #  url: http://20.121.128.204/contact.html
+    needs: test
+    environment:
+      name: development
+      url: http://20.121.128.204/contact.html
     steps:
       - name: Clone the Code
         uses: actions/checkout@v3
