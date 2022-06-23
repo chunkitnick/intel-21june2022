@@ -58,6 +58,7 @@ jobs:
     #  url: http://20.121.128.204/contact.html
     steps:
       - name: Copy and deploy
+        uses: mdallasanta/ssh-scp-deploy@{version}
         with:
           local: 'myapp'                                                  # Local file path - REQUIRED false - DEFAULT ./
           remote: '/home/azureuser/'                                                 # Remote file path - REQUIRED false - DEFAULT ~/
