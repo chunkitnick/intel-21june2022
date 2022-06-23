@@ -29,6 +29,10 @@ jobs:
       - name: Build dynamic.html
         run: echo 'I am dynamic.html' > myapp/dynamic.html
 
+      - name: Inject Version Details to the Application
+        run: |
+          sed -i 's/REPLACEAPPENVIRONMENT/$GITHUB_ENV/g' myapp/version.html
+
   test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
