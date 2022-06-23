@@ -34,20 +34,12 @@ jobs:
           echo $GITHUB_ENV
           sed -i "s|REPLACEAPPENVIRONMENT|$GITHUB_ENV|g" myapp/version.html
           cat myapp/version.html
-      
-      - name: Cache Primes
-        id: cache-primes
-        uses: actions/cache@v3
+
+      - name: Upload the Artifact
+        uses: actions/upload-artifact@v3
         with:
-          path: prime-numbers
-          key: ${{ runner.os }}-primes
-
-      - name: Generate Prime Numbers
-        if: steps.cache-primes.outputs.cache-hit != 'true'
-        run: /generate-primes.sh -d prime-numbers
-
-      - name: Use Prime Numbers
-        run: /primes.sh -d prime-numbers
+          name: myapp-package
+          path: myapp
 
   test:
     # The type of runner that the job will run on
@@ -61,6 +53,17 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
+
+      - name: Dowload the myapp-
+        uses: actions/download-artifcat@v3
+        with:
+          name: myapp-package
+          path: myapp
+      
+      - name: Verify the donloadad packages
+        run: | 
+          ls -la
+          pwd
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
