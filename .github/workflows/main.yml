@@ -54,8 +54,8 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      - name: Dowload the myapp-
-        uses: actions/download-artifcat@v3
+      - name: Download the myapp-package
+        uses: actions/download-artifact@v3
         with:
           name: myapp-package
           path: myapp
