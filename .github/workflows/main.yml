@@ -32,7 +32,7 @@ jobs:
       - name: Inject Version Details to the Application
         run: |
           echo $GITHUB_ENV
-          sed -i 's/REPLACEAPPENVIRONMENT/"$GITHUB_ENV"/g' myapp/version.html
+          sed -i "s/REPLACEAPPENVIRONMENT/$GITHUB_ENV/g" myapp/version.html
           cat myapp/version.html
       
       - name: Cache Primes
